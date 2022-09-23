@@ -40,6 +40,11 @@ INSTALLED_APPS = [
     'taggit',
     
     'products',
+    'accounts',
+    'orders',
+    'setinges',
+    
+
     
 
     
@@ -68,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'setinges.context_processors.getinfo',
             ],
         },
     },
