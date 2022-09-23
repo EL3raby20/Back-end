@@ -16,6 +16,7 @@ FLAG_OPTIONS=(
 class Products(models.Model):
     name=models.CharField(max_length=200 , verbose_name=_("Name"))
     sku=models.IntegerField(_("sku"))
+    img=models.ImageField(upload_to="Products/")
     subtitle=models.CharField(_("SubTitle"), max_length=500)
     descriptin=models.TextField(_("Descriptin"), max_length=5000)
     flag=models.CharField(_("Flag"), max_length=20, choices=FLAG_OPTIONS)
