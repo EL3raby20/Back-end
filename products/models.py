@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.core.validators import MaxValueValidator,MinValueValidator
 from taggit.managers import TaggableManager
+from django.utils.text import slugify
 
 FLAG_OPTIONS=(
     
@@ -25,9 +26,18 @@ class Products(models.Model):
     category=models.ForeignKey('Category',related_name="Products_Category",on_delete=models.SET_NULL, null=True,blank=True)
     quantity=models.IntegerField(_("Quantity"))
     tags = TaggableManager()
+    slug=models.SlugField(blank=True,null=True)
 
     def __str__(self):
         return self.name
+        
+    def save(self, *args, **kwargs):
+
+        self.slug = slugify(self.name)
+        super(Products, self).save(*args, **kwargs) 
+  
+
+
 
 
 
@@ -37,6 +47,7 @@ class Products(models.Model):
 class Brand(models.Model):
     name=models.CharField(_("Name"), max_length=200)
     img=models.ImageField(_("Image"),upload_to="Brands/")
+    category=models.ForeignKey('Category',related_name="Brand_Category",on_delete=models.SET_NULL, null=True,blank=True)
 
 
     def __str__(self):
@@ -62,7 +73,7 @@ class ProductsImges(models.Model):
 
 class Category(models.Model):
     name=models.CharField(_("Name"), max_length=200)
-    img=models.ImageField(_("Image"),upload_to="Brands/")
+    img=models.ImageField(_("Image"),upload_to="Category/")
 
     def __str__(self):
         return (self.name)

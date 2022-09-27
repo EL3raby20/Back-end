@@ -55,6 +55,7 @@
 
 
 
+
        
         <!--=====================================
                     CSS LINK PART END
@@ -81,7 +82,6 @@
                                 <i class="icofont-world"></i>
                                 <select class="select">
                                     <option value="english" selected>english</option>
-                                    <option value="bangali">bangali</option>
                                     <option value="arabic">arabic</option>
                                 </select>
                             </div>
@@ -156,12 +156,12 @@
                         <div class="navbar-content">
                             <ul class="navbar-list">
                                 <li class="navbar-item dropdown">
-                                    <a class="navbar-link" href="#">Product</a>
+                                    <a class="navbar-link" href="{% url 'product:Product_List' %}">Product</a>
                                     </ul>
                                 </li>
                               
                                 <li class="navbar-item dropdown-megamenu">
-                                    <a class="navbar-link dropdown-arrow" href="#">category</a>
+                                    <a class="navbar-link dropdown-arrow" href="{% url 'product:Category_List' %}">category</a>
                                     <div class="megamenu">
                                         <div class="container megamenu-scroll">
                                             <div class="row row-cols-5">
@@ -290,7 +290,7 @@
                                     </div>
                                 </li>
                                 <li class="navbar-item ">
-                                    <a class="navbar-link " href="#">Brands</a>
+                                    <a class="navbar-link " href="{% url 'product:Brand_List' %}">Brands</a>
    
                                 </li>
                                 <li class="navbar-item dropdown">
@@ -1097,6 +1097,7 @@
         <script src="{% static 'vendor/niceselect/nice-select.min.js' %}"></script>
         <script src="{% static 'vendor/slickslider/slick.min.js' %}"></script>
         <script src="{% static 'vendor/venobox/venobox.min.js' %}"></script>
+        <script src="{% static 'vendor/isotope/isotope.pkgd.min.js' %}"></script>
 
         <!-- CUSTOM -->
         <script src="{% static 'js/nice-select.js' %}"></script>
@@ -1104,6 +1105,7 @@
         <script src="{% static 'js/accordion.js' %}"></script>
         <script src="{% static 'js/venobox.js' %}"></script>
         <script src="{% static 'js/slick.js' %}"></script>
+        <script src="{% static 'js/isotope.js' %}"></script>
         <script src="{% static 'js/main.js' %}"></script> 
         <!--=====================================
                     JS LINK PART END
