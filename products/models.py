@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.core.validators import MaxValueValidator,MinValueValidator
 from taggit.managers import TaggableManager
 from django.utils.text import slugify
+from django.db.models.aggregates import Avg
 
 FLAG_OPTIONS=(
     
@@ -22,7 +23,7 @@ class Products(models.Model):
     descriptin=models.TextField(_("Descriptin"), max_length=5000)
     flag=models.CharField(_("Flag"), max_length=20, choices=FLAG_OPTIONS)
     price=models.FloatField(_("Price"))
-    brand=models.ForeignKey('Brand',related_name="Products_brand",on_delete=models.SET_NULL, null=True,blank=True)
+    brand=models.ForeignKey('Brand',related_name="product_brand",on_delete=models.SET_NULL, null=True,blank=True)
     category=models.ForeignKey('Category',related_name="Products_Category",on_delete=models.SET_NULL, null=True,blank=True)
     quantity=models.IntegerField(_("Quantity"))
     tags = TaggableManager()
@@ -35,6 +36,11 @@ class Products(models.Model):
 
         self.slug = slugify(self.name)
         super(Products, self).save(*args, **kwargs) 
+
+    def avg_reviews(self):
+        avg=self.product_review.aggregate(avg=Avg('rate'))
+        return avg
+
   
 
 
